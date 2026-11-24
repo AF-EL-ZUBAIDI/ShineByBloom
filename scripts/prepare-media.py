@@ -56,6 +56,10 @@ PHOTOS = {
     "basket-haircare-closeup": "IMG_7404.HEIC",
     "basket-pastel": "IMG_0319.HEIC",
     "basket-top": "IMG_7345.HEIC",
+    # box bouquets
+    "box-coral": "IMG_6497.HEIC",
+    "box-red": "IMG_0492.HEIC",
+    "box-coral-side": "IMG_6504.HEIC",
     # red roses
     "red-heart": "IMG_3820.HEIC",
     "red-perfume-hand": "IMG_4021.HEIC",

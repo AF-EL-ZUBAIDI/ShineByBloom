@@ -16,7 +16,7 @@ const fr = {
   meta: {
     title: "Shine by Bloom · Bouquets personnalisés à Orléans",
     description:
-      "Bouquets et paniers personnalisés à Orléans : des fleurs, son parfum, son maquillage ou ses soins préférés réunis dans une création faite main. Commande sur Instagram, livraison sur Orléans.",
+      "Bouquets et paniers personnalisés à Orléans : des fleurs, son parfum, son maquillage ou ses soins préférés réunis dans une création faite main. Commande sur Instagram. Nous sommes à Orléans.",
   },
   nav: {
     creations: "Créations",
@@ -28,10 +28,10 @@ const fr = {
   hero: {
     script: "Bouquets, make-up, personnalisés",
     title: "Des fleurs et ses produits préférés, réunis dans un bouquet.",
-    body: "Bouquets et paniers personnalisés, composés à la main à Orléans.",
+    body: "Bouquets, box et paniers personnalisés, composés à la main à Orléans.",
     cta: "Commander sur Instagram",
     secondary: "Voir les créations",
-    place: "Livraison sur Orléans",
+    place: "Nous sommes à Orléans",
   },
   intro: {
     text: "Un parfum glissé entre les roses, un rouge à lèvres niché dans le gypsophile, son prénom sur la carte. Chaque création est pensée pour une seule personne.",
@@ -57,6 +57,16 @@ const fr = {
           "Panier de roses roses et blanches garni de parfums",
           "Gros plan sur un panier de roses pêche avec soins capillaires",
           "Panier de roses fuchsia, lys et produits de beauté",
+        ],
+      },
+      {
+        script: "le bouquet en box",
+        title: "Un bouquet qui tient debout tout seul",
+        body: "Les fleurs sont montées dans une box nouée d’un ruban : pas besoin de vase, la création se pose telle quelle. En version fleurie ou garnie de produits.",
+        alts: [
+          "Bouquet de roses corail et blanches dans une box rose",
+          "Bouquet de roses rouges dans une box noire",
+          "Box rose garnie de roses et de soins",
         ],
       },
       {
@@ -88,11 +98,10 @@ const fr = {
   details: {
     script: "qui font toute la différence",
     title: "Les petits détails",
-    note: "À ajouter à votre création. Disponibles en petites quantités.",
+    note: "À ajouter à votre création.",
     items: [
       { name: "Petite couronne", desc: "Dorée, pour une touche royale", price: "1 €" },
       { name: "Petits papillons", desc: "Légers et élégants, pour une finition féerique", price: "1 €" },
-      { name: "Ruban en organza", desc: "Plusieurs couleurs, pour un effet délicat", price: "0,50 €" },
       { name: "Petites cartes à écrire", desc: "Idéales pour un mot doux", price: "1 €" },
       { name: "Carte vintage", desc: "Style rétro et romantique", price: "1 €" },
       { name: "Stick cœur", desc: "Pour tenir vos cartes ou sublimer la création", price: "1 €" },
@@ -110,7 +119,7 @@ const fr = {
       },
       {
         title: "Choisissez le format et les couleurs",
-        body: "Bouquet, cœur, box ou panier en taille S, M ou L. Rose poudré, rouge, jaune, c’est vous qui décidez.",
+        body: "Bouquet, bouquet en box, cœur ou panier en taille S, M ou L. Rose poudré, rouge, jaune, c’est vous qui décidez.",
       },
       {
         title: "Ajoutez les produits et les détails",
@@ -118,7 +127,7 @@ const fr = {
       },
       {
         title: "Recevez votre création",
-        body: "Nous livrons sur Orléans.",
+        body: "Nous sommes à Orléans.",
       },
     ],
     sizesTitle: "Trois tailles de panier",
@@ -145,7 +154,7 @@ const en: typeof fr = {
   meta: {
     title: "Shine by Bloom · Personalised bouquets in Orléans",
     description:
-      "Personalised bouquets and gift baskets in Orléans, France: flowers with their favourite perfume, make-up or skincare, arranged by hand. Order on Instagram, delivery in Orléans.",
+      "Personalised bouquets and gift baskets in Orléans, France: flowers with their favourite perfume, make-up or skincare, arranged by hand. Order on Instagram. We are in Orléans.",
   },
   nav: {
     creations: "Creations",
@@ -157,10 +166,10 @@ const en: typeof fr = {
   hero: {
     script: "Bouquets, make-up, personalised",
     title: "Flowers and the beauty products they love, in one bouquet.",
-    body: "Personalised bouquets and gift baskets, arranged by hand in Orléans.",
+    body: "Personalised bouquets, boxes and gift baskets, arranged by hand in Orléans.",
     cta: "Order on Instagram",
     secondary: "See the creations",
-    place: "Delivery in Orléans",
+    place: "We are in Orléans",
   },
   intro: {
     text: "A perfume tucked between the roses, a lipstick nestled in baby’s breath, their name on the card. Every creation is made with one person in mind.",
@@ -186,6 +195,16 @@ const en: typeof fr = {
           "Basket of pink and white roses filled with perfumes",
           "Close-up of a peach rose basket with haircare products",
           "Basket of fuchsia roses, lilies and beauty products",
+        ],
+      },
+      {
+        script: "the box bouquet",
+        title: "A bouquet that stands on its own",
+        body: "The flowers are set in a box tied with a ribbon: no vase needed, the creation is ready to display. Flowers only, or filled with products.",
+        alts: [
+          "Coral and white rose bouquet in a pink box",
+          "Red rose bouquet in a black box",
+          "Pink box filled with roses and skincare",
         ],
       },
       {
@@ -217,11 +236,10 @@ const en: typeof fr = {
   details: {
     script: "that make all the difference",
     title: "The little details",
-    note: "Add them to your creation. Available in small quantities.",
+    note: "Add them to your creation.",
     items: [
       { name: "Little crown", desc: "Golden, for a royal touch", price: "€1" },
       { name: "Little butterflies", desc: "Light and elegant, for a fairytale finish", price: "€1" },
-      { name: "Organza ribbon", desc: "Several colours, for a delicate effect", price: "€0.50" },
       { name: "Small note cards", desc: "Just right for a sweet message", price: "€1" },
       { name: "Vintage card", desc: "Retro and romantic", price: "€1" },
       { name: "Heart stick", desc: "Holds your cards or dresses up the creation", price: "€1" },
@@ -239,7 +257,7 @@ const en: typeof fr = {
       },
       {
         title: "Pick the format and colours",
-        body: "Bouquet, heart, box, or a basket in size S, M or L. Blush pink, red, yellow, it is up to you.",
+        body: "Bouquet, box bouquet, heart, or a basket in size S, M or L. Blush pink, red, yellow, it is up to you.",
       },
       {
         title: "Add the products and details",
@@ -247,7 +265,7 @@ const en: typeof fr = {
       },
       {
         title: "Receive your creation",
-        body: "We deliver in Orléans.",
+        body: "We are in Orléans.",
       },
     ],
     sizesTitle: "Three basket sizes",

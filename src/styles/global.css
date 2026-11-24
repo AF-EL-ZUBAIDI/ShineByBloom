@@ -193,15 +193,11 @@ a {
 .top.is-stuck .brand {
   opacity: 1;
 }
-.brand__shine {
-  font-family: var(--display);
-  font-size: 1.35rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
+.brand__shine,
 .brand__bloom {
   font-family: var(--script);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  line-height: 1;
   color: var(--gold);
 }
 .top__nav {
@@ -251,11 +247,9 @@ a {
   .top .btn--small {
     display: none;
   }
-  .brand__shine {
-    font-size: 1.1rem;
-  }
+  .brand__shine,
   .brand__bloom {
-    font-size: 1.3rem;
+    font-size: 1.45rem;
   }
 }
 
@@ -472,6 +466,7 @@ a {
 .js .is-in[data-slide] {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 /* ---------- intro ---------- */
@@ -888,7 +883,15 @@ a {
   gap: 0.5rem 1.75rem;
 }
 .foot__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   text-decoration: none;
+}
+.ico {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
 }
 .foot__links a:hover {
   color: var(--berry);
