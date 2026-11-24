@@ -1,0 +1,329 @@
+---
+import Pic from "./Pic.astro";
+import { ui, links, type Lang } from "../i18n/ui";
+import videos from "../data/videos.json";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const home = lang === "fr" ? "/" : "/en/";
+
+type Video = { src: string; poster: string };
+const vids = videos as Video[];
+
+// Three arched windows at the top. Each one plays a video when the media
+// folder contains some (see scripts/prepare-media.py), otherwise it cycles photos.
+const windows = [
+  ["hero-basket-gold", "hero-pink-closeup", "hero-basket-care"],
+  ["hero-peach-closeup", "hero-red-butterflies", "hero-beauty-closeup"],
+  ["hero-blush-closeup", "hero-basket-white", "hero-perfume-closeup"],
+];
+const heroVideos = vids.slice(0, 3);
+const extraVideos = vids.slice(3);
+
+const creationPhotos = [
+  ["beauty-makeup", "beauty-perfumes", "beauty-skincare"],
+  ["basket-gold-handle", "basket-haircare-closeup", "basket-fuchsia"],
+  ["red-heart", "red-perfume-hand", "red-crown"],
+  ["custom-yellow", "custom-dome", "custom-bear"],
+];
+
+const ribbonA = [
+  "beauty-coral", "red-lily-closeup", "basket-white-lily", "custom-pink-bouquet",
+  "beauty-vanity", "red-shell", "basket-pastel", "beauty-pink-wrap",
+];
+const ribbonB = [
+  "basket-haircare", "custom-white-pink", "red-ribbon-basket", "beauty-blush-wrap",
+  "basket-top", "custom-yellow-vanity", "red-lily-basket", "beauty-gerbera",
+];
+const sizes = ["S", "M", "L"];
+---
+
+<a class="skip" href="#creations">{t.nav.creations}</a>
+
+<header class="top" data-top>
+  <a class="brand" href={home} aria-label="Shine by Bloom">
+    <span class="brand__shine">Shine</span><span class="brand__bloom">by Bloom</span>
+  </a>
+  <nav class="top__nav" aria-label="Sections">
+    <a href="#creations">{t.nav.creations}</a>
+    <a href="#details">{t.nav.details}</a>
+    <a href="#commander">{t.nav.order}</a>
+  </nav>
+  <div class="top__end">
+    <div class="lang" role="group" aria-label={t.nav.switchLabel}>
+      <a href="/" hreflang="fr" lang="fr" aria-current={lang === "fr" ? "true" : undefined} data-lang="fr">FR</a>
+      <a href="/en/" hreflang="en" lang="en" aria-current={lang === "en" ? "true" : undefined} data-lang="en">EN</a>
+    </div>
+    <a class="btn btn--small" href={links.dm} target="_blank" rel="noopener">{t.nav.cta}</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero__text">
+      <h1 class="hero__logo">
+        <span class="logo-gold" role="img" aria-label="Shine by Bloom"></span>
+      </h1>
+      <p class="script hero__script">{t.hero.script}</p>
+      <p class="hero__title">{t.hero.title}</p>
+      <p class="hero__body">{t.hero.body}</p>
+      <div class="hero__actions">
+        <a class="btn" href={links.dm} target="_blank" rel="noopener">{t.hero.cta}</a>
+        <a class="link" href="#creations">{t.hero.secondary}</a>
+      </div>
+    </div>
+
+    <div class="hero__windows">
+      {
+        windows.map((slugs, i) => (
+          <div class={`window window--${i + 1}`}>
+            <div class="window__glass">
+              {heroVideos[i] ? (
+                <video
+                  src={heroVideos[i].src}
+                  poster={heroVideos[i].poster}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  aria-label={t.videos.label}
+                />
+              ) : (
+                slugs.map((slug, j) => (
+                  <Pic
+                    slug={slug}
+                    alt={j === 0 ? t.ribbon.alt : ""}
+                    sizes="(min-width: 900px) 20vw, 34vw"
+                    eager={j === 0}
+                    class={`window__frame window__frame--${j + 1}`}
+                  />
+                ))
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="hero__place">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.6 5 3.200 8.400 10 10-6.800 1.600-9.400 5-10 10-.6-5-3.200-8.400-10-10 6.800-1.600 9.400-5 10-10z"/></svg>
+      {t.hero.place}
+    </p>
+  </section>
+
+  <section class="intro" data-reveal>
+    <span class="intro__petal intro__petal--l" data-slide="left"><Pic slug="hero-pink-closeup" alt="" sizes="30vw" /></span>
+    <p class="intro__text" data-slide="up">{t.intro.text}</p>
+    <span class="intro__petal intro__petal--r" data-slide="right"><Pic slug="red-lily-closeup" alt="" sizes="30vw" /></span>
+  </section>
+
+  <section class="creations" id="creations">
+    <h2 class="section-title" data-reveal><span data-slide="up">{t.creations.title}</span></h2>
+    {
+      t.creations.items.map((item, i) => {
+        const p = creationPhotos[i];
+        const flip = i % 2 === 1;
+        return (
+          <article class:list={["creation", { "creation--flip": flip }]} data-reveal>
+            <div class="creation__photos">
+              <div class="creation__main" data-slide={flip ? "right" : "left"}>
+                <Pic slug={p[0]} alt={item.alts[0]} sizes="(min-width: 900px) 34vw, 78vw" />
+              </div>
+              <div class="creation__side creation__side--a" data-slide={flip ? "right" : "left"} style="--d: 140ms">
+                <Pic slug={p[1]} alt={item.alts[1]} sizes="(min-width: 900px) 18vw, 42vw" />
+              </div>
+              <div class="creation__side creation__side--b" data-slide={flip ? "left" : "right"} style="--d: 260ms">
+                <Pic slug={p[2]} alt={item.alts[2]} sizes="(min-width: 900px) 16vw, 38vw" />
+              </div>
+            </div>
+            <div class="creation__text" data-slide={flip ? "left" : "right"} style="--d: 120ms">
+              <p class="script">{item.script}</p>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </article>
+        );
+      })
+    }
+  </section>
+
+  <section class="ribbon" data-ribbon aria-label={t.ribbon.title}>
+    <h2 class="ribbon__title" data-reveal><span data-slide="up">{t.ribbon.title}</span></h2>
+    <div class="ribbon__row ribbon__row--a" data-row="-1">
+      {ribbonA.map((slug) => <Pic slug={slug} alt={t.ribbon.alt} sizes="(min-width: 900px) 22vw, 46vw" />)}
+    </div>
+    <div class="ribbon__row ribbon__row--b" data-row="1">
+      {ribbonB.map((slug) => <Pic slug={slug} alt={t.ribbon.alt} sizes="(min-width: 900px) 22vw, 46vw" />)}
+    </div>
+  </section>
+
+  {
+    extraVideos.length > 0 && (
+      <section class="reels" data-reveal>
+        <h2 class="section-title"><span data-slide="up">{t.videos.title}</span></h2>
+        <div class="reels__row">
+          {extraVideos.map((v, i) => (
+            <video
+              src={v.src}
+              poster={v.poster}
+              muted
+              loop
+              playsinline
+              autoplay
+              preload="none"
+              aria-label={t.videos.label}
+              data-slide={i % 2 ? "right" : "left"}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="details" id="details">
+    <div class="details__head" data-reveal>
+      <h2 data-slide="left">{t.details.title}</h2>
+      <p class="script" data-slide="right">{t.details.script}</p>
+    </div>
+    <ul class="menu" data-reveal>
+      {
+        t.details.items.map((item, i) => (
+          <li data-slide={i % 2 ? "right" : "left"} style={`--d: ${Math.floor(i / 2) * 110}ms`}>
+            <span class="menu__name">{item.name}</span>
+            <span class="menu__dots" aria-hidden="true" />
+            <span class="menu__price">{item.price}</span>
+            <span class="menu__desc">{item.desc}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="details__note" data-reveal><span data-slide="up">{t.details.note}</span></p>
+  </section>
+
+  <section class="order" id="commander">
+    <div class="order__head" data-reveal>
+      <h2 data-slide="right">{t.order.title}</h2>
+      <p class="script" data-slide="left">{t.order.script}</p>
+    </div>
+    <ol class="steps" data-reveal>
+      {
+        t.order.steps.map((step, i) => (
+          <li data-slide={i % 2 ? "right" : "left"} style={`--d: ${i * 110}ms`}>
+            <span class="steps__n" aria-hidden="true">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="sizes" data-reveal>
+      <h3 class="sizes__title" data-slide="up">{t.order.sizesTitle}</h3>
+      <div class="sizes__row">
+        {
+          sizes.map((s, i) => (
+            <figure data-slide={i === 0 ? "left" : i === 2 ? "right" : "up"} style={`--d: ${i * 90}ms`}>
+              <Pic slug={`size-${s.toLowerCase()}`} alt={`${t.order.sizeAlt} ${s}`} sizes="(min-width: 900px) 18vw, 30vw" />
+              <figcaption>{s}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+      <p class="sizes__price" data-slide="up" style="--d: 200ms">{t.order.price}</p>
+    </div>
+  </section>
+
+  <section class="contact" data-reveal>
+    <div class="contact__photo contact__photo--l" data-slide="left">
+      <Pic slug="basket-lily" alt="" sizes="(min-width: 900px) 24vw, 40vw" />
+    </div>
+    <div class="contact__body" data-slide="up">
+      <p class="script">{t.contact.script}</p>
+      <h2>{t.contact.title}</h2>
+      <p>{t.contact.body}</p>
+      <a class="btn" href={links.dm} target="_blank" rel="noopener">{t.contact.cta}</a>
+      <p class="contact__handles">
+        <a href={links.instagram} target="_blank" rel="noopener">@shinebybloom</a>
+        <a href={links.tiktok} target="_blank" rel="noopener">{t.contact.tiktok}</a>
+      </p>
+    </div>
+    <div class="contact__photo contact__photo--r" data-slide="right">
+      <Pic slug="red-black-basket" alt="" sizes="(min-width: 900px) 24vw, 40vw" />
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span class="logo-gold logo-gold--small" role="img" aria-label="Shine by Bloom"></span>
+  <p>{t.footer.tagline}</p>
+  <p class="foot__links">
+    <a href={links.instagram} target="_blank" rel="noopener">Instagram</a>
+    <a href={links.tiktok} target="_blank" rel="noopener">TikTok</a>
+    <a href="#top" data-top-link>{t.footer.top}</a>
+  </p>
+  <p class="foot__legal">© {new Date().getFullYear()} Shine by Bloom, {t.contact.place}. {t.footer.rights}</p>
+</footer>
+
+<script>
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Slide-ins: each [data-reveal] group plays once when it enters the viewport.
+  const groups = document.querySelectorAll<HTMLElement>("[data-reveal]");
+  if (reduce || !("IntersectionObserver" in window)) {
+    groups.forEach((g) => g.classList.add("is-in"));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -14% 0px", threshold: 0.12 },
+    );
+    groups.forEach((g) => io.observe(g));
+  }
+
+  // Photo ribbon: the two rows travel in opposite directions as you scroll.
+  const ribbon = document.querySelector<HTMLElement>("[data-ribbon]");
+  const rows = ribbon ? [...ribbon.querySelectorAll<HTMLElement>("[data-row]")] : [];
+  const top = document.querySelector<HTMLElement>("[data-top]");
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    top?.classList.toggle("is-stuck", window.scrollY > 24);
+    if (!ribbon || reduce) return;
+    const r = ribbon.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (r.bottom < 0 || r.top > vh) return;
+    const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+    for (const row of rows) {
+      const dir = Number(row.dataset.row);
+      const travel = row.scrollWidth - window.innerWidth;
+      const x = dir < 0 ? -p * travel : -(1 - p) * travel;
+      row.style.transform = `translate3d(${x}px,0,0)`;
+    }
+  }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(frame);
+      }
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", frame);
+  frame();
+
+  document.querySelector("[data-top-link]")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  });
+</script>

@@ -1,0 +1,28 @@
+{
+  "name": "shinebybloom",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shine by Bloom - bouquets personnalisés à Orléans. Site vitrine bilingue (FR/EN).",
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "media": "python scripts/prepare-media.py"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.1",
+    "@fontsource-variable/bodoni-moda": "^5.2.5",
+    "@fontsource-variable/jost": "^5.2.5",
+    "@fontsource/pinyon-script": "^5.2.5",
+    "astro": "^5.16.9"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.96.0"
+  }
+}

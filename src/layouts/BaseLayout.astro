@@ -1,0 +1,50 @@
+---
+import "@fontsource-variable/bodoni-moda";
+import "@fontsource-variable/bodoni-moda/wght-italic.css";
+import "@fontsource-variable/jost";
+import "@fontsource/pinyon-script";
+import "../styles/global.css";
+import { ui, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const site = Astro.site ?? new URL("https://shinebybloom.com");
+const frUrl = new URL("/", site).href;
+const enUrl = new URL("/en/", site).href;
+const canonical = lang === "fr" ? frUrl : enUrl;
+const ogImage = new URL("/media/hero-peach-closeup-1600.webp", site).href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="fr" href={frUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={frUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#fdecee" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === "fr" ? "fr_FR" : "en_GB"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" as="image" href="/media/logo-mask.png" />
+    <!-- Motion styles only apply once we know JS is running -->
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
