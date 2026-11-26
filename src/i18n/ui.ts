@@ -110,7 +110,7 @@ const fr = {
     ],
   },
   order: {
-    script: "en quatre étapes",
+    script: "en cinq étapes",
     title: "Comment commander",
     steps: [
       {
@@ -126,6 +126,10 @@ const fr = {
         body: "Parfum, maquillage, soins, puis une carte, un prénom ou quelques papillons.",
       },
       {
+        title: "Versez l’acompte",
+        body: "Votre commande est validée dès réception de l’acompte.",
+      },
+      {
         title: "Recevez votre création",
         body: "Nous sommes à Orléans.",
       },
@@ -133,6 +137,12 @@ const fr = {
     sizesTitle: "Trois tailles de panier",
     sizeAlt: "Paniers en osier, taille",
     price: "Chaque création est unique : le prix dépend de la taille et des produits choisis. Demandez un devis en message privé.",
+    pay: {
+      title: "Paiement et acompte",
+      deposit: "Un acompte est obligatoire pour valider votre commande. Aucune commande n’est prise sans acompte.",
+      methodsLabel: "Moyens de paiement acceptés",
+      methods: ["Virement", "Wero", "Espèces"],
+    },
   },
   contact: {
     script: "à très vite",
@@ -248,7 +258,7 @@ const en: typeof fr = {
     ],
   },
   order: {
-    script: "in four steps",
+    script: "in five steps",
     title: "How to order",
     steps: [
       {
@@ -264,6 +274,10 @@ const en: typeof fr = {
         body: "Perfume, make-up, skincare, then a card, a name or a few butterflies.",
       },
       {
+        title: "Pay the deposit",
+        body: "Your order is confirmed as soon as we receive the deposit.",
+      },
+      {
         title: "Receive your creation",
         body: "We are in Orléans.",
       },
@@ -271,6 +285,12 @@ const en: typeof fr = {
     sizesTitle: "Three basket sizes",
     sizeAlt: "Wicker baskets, size",
     price: "Every creation is unique: the price depends on the size and the products you choose. Ask for a quote by direct message.",
+    pay: {
+      title: "Payment and deposit",
+      deposit: "A deposit is required to confirm your order. No order is taken without a deposit.",
+      methodsLabel: "Accepted payment methods",
+      methods: ["Bank transfer", "Wero", "Cash"],
+    },
   },
   contact: {
     script: "see you soon",

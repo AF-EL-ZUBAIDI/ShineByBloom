@@ -763,7 +763,7 @@ a {
 }
 @media (min-width: 1040px) {
   .steps {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 .sizes {
@@ -798,6 +798,57 @@ a {
   max-width: 44ch;
   margin: 2.5rem auto 0;
   color: var(--ink-soft);
+}
+
+.pay {
+  position: relative;
+  display: grid;
+  gap: 1.75rem clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  max-width: 62rem;
+  margin: clamp(3.5rem, 8vw, 6rem) auto 0;
+  padding: clamp(2rem, 5vw, 3.25rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--blush);
+  border-radius: 1.75rem;
+}
+.pay::before {
+  content: "";
+  position: absolute;
+  inset: 0.6rem;
+  border: 1px solid var(--gold-soft);
+  border-radius: 1.25rem;
+  pointer-events: none;
+}
+.pay h3 {
+  font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.6rem);
+  margin-bottom: 0.7rem;
+}
+.pay__text p {
+  max-width: 34ch;
+}
+.pay__methods p {
+  color: var(--ink-soft);
+  margin-bottom: 0.8rem;
+}
+.pay__methods ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.pay__methods li {
+  padding: 0.5em 1.2em;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: var(--white);
+  font-weight: 500;
+}
+@media (min-width: 760px) {
+  .pay {
+    grid-template-columns: 1.2fr 1fr;
+  }
 }
 
 /* ---------- contact ---------- */

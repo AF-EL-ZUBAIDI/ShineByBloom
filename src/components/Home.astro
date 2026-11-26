@@ -235,6 +235,19 @@ const sizes = ["S", "M", "L"];
       </div>
       <p class="sizes__price" data-slide="up" style="--d: 200ms">{t.order.price}</p>
     </div>
+
+    <div class="pay" data-reveal>
+      <div class="pay__text" data-slide="left">
+        <h3>{t.order.pay.title}</h3>
+        <p>{t.order.pay.deposit}</p>
+      </div>
+      <div class="pay__methods" data-slide="right">
+        <p>{t.order.pay.methodsLabel}</p>
+        <ul>
+          {t.order.pay.methods.map((m) => <li>{m}</li>)}
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section class="contact" data-reveal>
