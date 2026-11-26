@@ -4,7 +4,7 @@ import "@fontsource-variable/bodoni-moda/wght-italic.css";
 import "@fontsource-variable/jost";
 import "@fontsource/pinyon-script";
 import "../styles/global.css";
-import { ui, type Lang } from "../i18n/ui";
+import { ui, links, type Lang } from "../i18n/ui";
 
 interface Props {
   lang: Lang;
@@ -17,7 +17,22 @@ const enUrl = new URL("/en/", site).href;
 const canonical = lang === "fr" ? frUrl : enUrl;
 // The dev site (SITE_ENV=dev in its Cloudflare build settings) must stay out of search engines.
 const isDev = process.env.SITE_ENV === "dev";
-const ogImage = new URL("/media/hero-peach-closeup-1600.webp", site).href;
+const ogImage = new URL("/og.jpg", site).href;
+
+// Structured data: tells Google this is a florist in Orléans (rich results, Maps context).
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Florist",
+  name: "Shine by Bloom",
+  description: t.meta.description,
+  url: canonical,
+  image: ogImage,
+  logo: new URL("/favicon.svg", site).href,
+  address: { "@type": "PostalAddress", addressLocality: "Orléans", addressCountry: "FR" },
+  areaServed: { "@type": "City", name: "Orléans" },
+  paymentAccepted: t.order.pay.methods.join(", "),
+  sameAs: [links.instagram, links.tiktok],
+};
 ---
 
 <!doctype html>
@@ -38,9 +53,15 @@ const ogImage = new URL("/media/hero-peach-closeup-1600.webp", site).href;
     <meta property="og:title" content={t.meta.title} />
     <meta property="og:description" content={t.meta.description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Shine by Bloom" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale:alternate" content={lang === "fr" ? "en_GB" : "fr_FR"} />
     <meta property="og:locale" content={lang === "fr" ? "fr_FR" : "en_GB"} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="preload" as="image" href="/media/logo-mask.png" />
     <!-- Motion styles only apply once we know JS is running -->
     <script is:inline>
