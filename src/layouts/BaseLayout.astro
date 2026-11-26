@@ -15,6 +15,8 @@ const site = Astro.site ?? new URL("https://shinebybloom.com");
 const frUrl = new URL("/", site).href;
 const enUrl = new URL("/en/", site).href;
 const canonical = lang === "fr" ? frUrl : enUrl;
+// The dev site (SITE_ENV=dev in its Cloudflare build settings) must stay out of search engines.
+const isDev = process.env.SITE_ENV === "dev";
 const ogImage = new URL("/media/hero-peach-closeup-1600.webp", site).href;
 ---
 
@@ -25,6 +27,7 @@ const ogImage = new URL("/media/hero-peach-closeup-1600.webp", site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.description} />
+    {isDev && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="fr" href={frUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />

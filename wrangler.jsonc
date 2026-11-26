@@ -2,10 +2,17 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "shinebybloom",
   "compatibility_date": "2024-11-01",
-  // Only shinebybloom.com serves the site: no *.workers.dev address, no preview URLs.
+  // Only custom domains serve the site: no *.workers.dev address, no preview URLs.
   "workers_dev": false,
   "preview_urls": false,
   "assets": {
     "directory": "./dist"
+  },
+  // Dev site: a second Worker, deployed from the `dev` branch with
+  // `npx wrangler deploy --env dev` and served at dev.shinebybloom.com.
+  "env": {
+    "dev": {
+      "name": "shinebybloom-dev"
+    }
   }
 }

@@ -36,3 +36,12 @@ All text lives in `src/i18n/ui.ts` (`fr` and `en`). Change both.
 Same setup as the El Zubaidi site: static assets Worker (`wrangler.jsonc`).
 Build command `npm run build`, output `dist`. Or from this machine:
 `npx wrangler deploy` after a build.
+
+## Dev site
+
+- `main` branch -> Worker `shinebybloom` -> https://shinebybloom.com
+- `dev` branch -> Worker `shinebybloom-dev` -> https://dev.shinebybloom.com
+  (deploy command `npx wrangler deploy --env dev`, build variable `SITE_ENV=dev`
+  which adds a noindex tag)
+
+Work on `dev`, check it on the dev site, then merge `dev` into `main` to publish.
